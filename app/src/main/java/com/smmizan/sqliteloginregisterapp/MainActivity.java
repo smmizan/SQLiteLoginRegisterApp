@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     SQLiteHelperClass dbHelperClass;
@@ -16,6 +18,10 @@ public class MainActivity extends AppCompatActivity {
     Button bLogin,bRegister;
 
     EditText eUserID,eUserPassword;
+
+    PojoModel pojoModel;
+
+    ArrayList<String> namess;
 
 
     @Override
@@ -29,9 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        eUserID = (EditText) findViewById(R.id.userID) ;
-        eUserPassword = (EditText) findViewById(R.id.userPassword) ;
+        eUserID = (EditText) findViewById(R.id.editUser);
+        eUserPassword = (EditText) findViewById(R.id.editPassword) ;
 
+
+        namess = new ArrayList<String>();
 
 
         bLogin = (Button) findViewById(R.id.bLogin);
@@ -49,9 +57,14 @@ public class MainActivity extends AppCompatActivity {
 
                 if(vRow == true)
                 {
+//                    String miz = pojoModel.getUserID().toString();
+
                     Intent iLog = new Intent(MainActivity.this,WelcomeActivity.class);
+                    iLog.putExtra("oko",userID);
                     startActivity(iLog);
                     Toast.makeText(MainActivity.this, "Successfully Login !", Toast.LENGTH_SHORT).show();
+                    eUserID.setText("");
+                    eUserPassword.setText("");
 
                 }else
                 {

@@ -20,13 +20,15 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/userID"
+            android:id="@+id/editUser"
+            android:inputType="number"
             android:hint="Your ID"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/userPassword"
+            android:id="@+id/editPassword"
+            android:inputType="textPassword"
             android:hint="password"/>
 
         <LinearLayout

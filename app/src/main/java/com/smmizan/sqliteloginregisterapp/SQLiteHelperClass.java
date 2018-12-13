@@ -29,6 +29,7 @@ public class SQLiteHelperClass extends SQLiteOpenHelper {
 
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS" + TABLE_NAME;
 
+
     private Context context;
 
     public SQLiteHelperClass(Context context) {
@@ -106,8 +107,8 @@ public class SQLiteHelperClass extends SQLiteOpenHelper {
         {
             while (cursor.moveToNext())
             {
-                String user = cursor.getString(1);
-                String pass = cursor.getString(2);
+                String user = cursor.getString(2);
+                String pass = cursor.getString(3);
 
                 if(user.equals(userName) && pass.equals(userPassword))
                 {
@@ -121,6 +122,17 @@ public class SQLiteHelperClass extends SQLiteOpenHelper {
         return result;
 
 
+    }
+
+
+
+    public Cursor getSingleData(String userName,SQLiteDatabase sqLiteDatabase)
+    {
+        String[] projection = {Name,USER_ID,USER_DESIGNATION,USER_PHONE,USER_ADDRESS};
+        String selection = USER_ID + " LIKE ?";
+        String [] selection_args = {userName};
+        Cursor cursor = sqLiteDatabase.query(TABLE_NAME,projection,selection,selection_args,null,null,null);
+        return cursor;
     }
 
 
